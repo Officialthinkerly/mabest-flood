@@ -1,0 +1,11 @@
+@'
+services:
+  - type: web
+    name: mabest-flood
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: CONCURRENCY
+        value: "300"
+'@ | Out-File -Encoding ascii render.yaml
