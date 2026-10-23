@@ -1,4 +1,3 @@
-@'
 services:
   - type: web
     name: mabest-flood
@@ -8,4 +7,3 @@ services:
     envVars:
       - key: CONCURRENCY
         value: "300"
-'@ | Out-File -Encoding ascii render.yaml

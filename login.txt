@@ -1,1 +1,1 @@
-"user=MAB/2021/00053&password=123456&npassword=&cpassword=" | Out-File -Encoding ascii -NoNewline login.txt
+"user=MAB/2021/00053&password=123456&npassword=&cpassword="
