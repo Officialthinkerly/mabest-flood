@@ -6,4 +6,4 @@ services:
     dockerfilePath: ./Dockerfile
     envVars:
       - key: CONCURRENCY
-        value: "1000"
+        value: "5000"

